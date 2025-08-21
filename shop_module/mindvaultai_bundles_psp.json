@@ -1,0 +1,117 @@
+{
+  "currency": "EUR",
+  "lot_price_eur": 0.25,
+  "credits_per_euro": 4,
+  "recommended_min_bundle_eur": 4.95,
+  "psp_fees": {
+    "mollie_ideal": {
+      "fixed": 0.29,
+      "variable": 0.0
+    },
+    "paypal": {
+      "fixed": 0.35,
+      "variable": 0.029
+    },
+    "crypto": {
+      "fixed": 0.01,
+      "variable": 0.0
+    }
+  },
+  "bundles": [
+    {
+      "id": "bundle_1",
+      "name": "Starter",
+      "price_eur": 4.95,
+      "credits": 19,
+      "nominal_lots": 19,
+      "bonus_lots": 1,
+      "total_lots": 20,
+      "effective_price_per_lot_eur": 0.247,
+      "labels": [
+        "Instap"
+      ],
+      "is_featured": false,
+      "net_revenue_by_psp": {
+        "mollie_ideal": 4.66,
+        "paypal": 4.46,
+        "crypto": 4.94
+      }
+    },
+    {
+      "id": "bundle_2",
+      "name": "Popular",
+      "price_eur": 9.95,
+      "credits": 39,
+      "nominal_lots": 39,
+      "bonus_lots": 3,
+      "total_lots": 42,
+      "effective_price_per_lot_eur": 0.237,
+      "labels": [
+        "Meest gekozen"
+      ],
+      "is_featured": true,
+      "net_revenue_by_psp": {
+        "mollie_ideal": 9.66,
+        "paypal": 9.31,
+        "crypto": 9.94
+      }
+    },
+    {
+      "id": "bundle_3",
+      "name": "Pro",
+      "price_eur": 19.95,
+      "credits": 79,
+      "nominal_lots": 79,
+      "bonus_lots": 9,
+      "total_lots": 88,
+      "effective_price_per_lot_eur": 0.227,
+      "labels": [
+        "Beste waarde"
+      ],
+      "is_featured": true,
+      "net_revenue_by_psp": {
+        "mollie_ideal": 19.66,
+        "paypal": 19.02,
+        "crypto": 19.94
+      }
+    },
+    {
+      "id": "bundle_4",
+      "name": "Whale",
+      "price_eur": 49.95,
+      "credits": 199,
+      "nominal_lots": 199,
+      "bonus_lots": 30,
+      "total_lots": 229,
+      "effective_price_per_lot_eur": 0.218,
+      "labels": [
+        "Max value"
+      ],
+      "is_featured": false,
+      "net_revenue_by_psp": {
+        "mollie_ideal": 49.66,
+        "paypal": 48.15,
+        "crypto": 49.94
+      }
+    }
+  ],
+  "bonus_rules": [
+    {
+      "rule": "weekend_boost",
+      "target_bundle": "Popular",
+      "extra_bonus_lots": 2,
+      "active": false
+    },
+    {
+      "rule": "first_purchase",
+      "target_bundle": "Pro",
+      "extra_bonus_lots": 2,
+      "active": false
+    }
+  ],
+  "notes": [
+    "Gebruik .95 pricing om AOV te verhogen.",
+    "Routeer iDEAL als default; PayPal alleen als fallback (hogere fee).",
+    "Crypto biedt hoogste netto maar vraagt uitleg in checkout."
+  ]
+}

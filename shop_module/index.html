@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindVault-AI Bundels</title>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; background:#0b0b0c; color:#e8e8ea; }
+  h1 { margin-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px;}
+  .card { background:#151517; border:1px solid #2a2a2e; border-radius:16px; padding:16px; }
+  .badge { display:inline-block; padding:4px 8px; border-radius:999px; background:#222229; border:1px solid #323238; font-size:12px; margin-left:8px;}
+  .price { font-size:28px; margin:8px 0 4px; }
+  .muted { color:#b5b5bb; font-size:14px; }
+  button { width:100%; padding:10px 12px; border-radius:10px; border:1px solid #3f3f46; background:#1f1f23; color:#fff; cursor:pointer; }
+  button:hover { background:#27272b; }
+  footer { margin-top:24px; color:#9b9ba1; font-size:12px; }
+</style>
+</head>
+<body>
+  <h1>Bundles <span class="muted">— meer bundel = meer bonus</span></h1>
+  <div id="grid" class="grid"></div>
+  <footer>Bonusloten worden direct toegevoegd bij succesvolle betaling. Door te kopen ga je akkoord met de voorwaarden.</footer>
+
+<script>
+async function load() {
+  const res = await fetch('mindvaultai_bundles_psp.json');
+  const data = await res.json();
+  const grid = document.getElementById('grid');
+  data.bundles.forEach(b => {
+    const eff = (b.effective_price_per_lot_eur).toFixed(3).replace('.',',');
+    const div = document.createElement('div');
+    div.className='card';
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><strong>${b.name}</strong>${b.is_featured ? '<span class="badge">Meest gekozen</span>' : ''}</div>
+        <div class="price">€${b.price_eur.toFixed ? b.price_eur.toFixed(2) : b.price_eur}</div>
+      </div>
+      <div class="muted">${b.total_lots} loten ${b.bonus_lots>0?`(incl. +${b.bonus_lots} bonus)`:''}</div>
+      <div class="muted" style="margin:6px 0;">Effectieve prijs/lot: €${eff}</div>
+      <button onclick="selectBundle('${b.id}', ${b.price_eur})">Kies ${b.name}</button>
+    `;
+    grid.appendChild(div);
+  });
+}
+function selectBundle(id, price){
+  // Dummy handler: in echte webshop koppel je door naar je PSP checkout
+  alert('Gekozen: '+id+' — €'+price.toFixed(2));
+}
+load();
+</script>
+</body>
+</html>
